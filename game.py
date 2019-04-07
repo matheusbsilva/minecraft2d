@@ -42,6 +42,8 @@ textures = {
 pygame.init()
 
 DISPLAYSURF = pygame.display.set_mode((MAPWIDTH*TILESIZE, MAPHEIGHT*TILESIZE))
+PLAYER = pygame.image.load(ASSETS_PATH + 'player.png').convert_alpha()
+player_pos = [0, 0]
 
 pygame.display.set_caption('Test')
 
@@ -57,5 +59,8 @@ while True:
             for column in range(MAPWIDTH):
                 DISPLAYSURF.blit(textures[tilemap[row][column]],
                                  (column*TILESIZE, row*TILESIZE))
+
+        DISPLAYSURF.blit(PLAYER,
+                         (player_pos[0]*TILESIZE, player_pos[1]*TILESIZE))
 
     pygame.display.update()
