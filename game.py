@@ -5,6 +5,9 @@ import pygame
 
 from pygame.locals import QUIT, KEYDOWN, K_RIGHT, K_LEFT
 
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+
 DIRT = 0
 GRASS = 1
 WATER = 2
@@ -50,6 +53,7 @@ pygame.init()
 DISPLAYSURF = pygame.display.set_mode((MAPWIDTH*TILESIZE, MAPHEIGHT*TILESIZE + 50))
 PLAYER = pygame.image.load(ASSETS_PATH + 'player.png').convert_alpha()
 player_pos = [0, 0]
+INVFONT = pygame.font.Font(None, 18)
 
 pygame.display.set_caption('Test')
 
@@ -82,5 +86,14 @@ while True:
 
     DISPLAYSURF.blit(PLAYER,
                      (player_pos[0]*TILESIZE, player_pos[1]*TILESIZE))
+
+    place_position = 20
+
+    for item in inventory.keys():
+        DISPLAYSURF.blit(textures[item], (place_position, MAPHEIGHT*TILESIZE + 20))
+        place_position += 30
+        text_obj = INVFONT.render(str(inventory[item]), True, WHITE, BLACK)
+        DISPLAYSURF.blit(text_obj, (place_position, MAPHEIGHT*TILESIZE + 20))
+        place_position += 50
 
     pygame.display.update()
