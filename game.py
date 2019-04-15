@@ -79,6 +79,14 @@ while True:
             elif event.key == pygame.K_DOWN and player_pos[1] < MAPHEIGHT - 1:
                 player_pos[1] += 1
 
+            if event.key == pygame.K_1:
+                current_tile = tilemap[player_pos[1]][player_pos[0]]
+
+                if inventory[DIRT] > 0:
+                    inventory[DIRT] -= 1
+                    tilemap[player_pos[1]][player_pos[0]] = DIRT
+                    inventory[current_tile] += 1
+
     for row in range(MAPHEIGHT):
         for column in range(MAPWIDTH):
             DISPLAYSURF.blit(textures[tilemap[row][column]],
